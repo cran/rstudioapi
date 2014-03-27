@@ -1,0 +1,9 @@
+3b3b40ab74caf8647b68a56ffe4bf901 *DESCRIPTION
+21e140234a62e8a05def0df2df659508 *LICENSE
+d52cf0bc5cc78dbff1fd8999a2fe6374 *NAMESPACE
+bb89970e04fde55696604797aa81ad63 *R/code.R
+c5477b2d0b0d4075503ce0874d74daa4 *README.md
+9bde7fb825ec2eb37809e48d380babcd *man/callFun.Rd
+10f1cc62e21dabd884810167f25b560c *man/getVersion.Rd
+83935d5bd20deee1be5ddf1a29d5b086 *man/hasFun.Rd
+d748184f944e809e69dfbd7562b5330f *man/isAvailable.Rd
