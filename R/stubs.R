@@ -1,6 +1,5 @@
 
 
-
 #' @export
 versionInfo <- function() {
   callFun("versionInfo")
@@ -21,3 +20,9 @@ sourceMarkers <- function(name, markers, basePath = NULL,
                           autoSelect = c("none", "first", "error")) {
   callFun("sourceMarkers", name, markers, basePath, autoSelect)
 }
+
+#' @export
+navigateToFile <- function(file, line = 1L, column = 1L) {
+  callFun("navigateToFile", file, as.integer(line), as.integer(column))
+}
+
