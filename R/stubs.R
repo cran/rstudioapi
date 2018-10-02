@@ -31,9 +31,17 @@ askForPassword <- function(prompt = "Please enter your password") {
   callFun("askForPassword", prompt)
 }
 
+#' Get Path to Active RStudio Project
 #' @export
 getActiveProject <- function() {
-  callFun("getActiveProject")
+  path <- callFun("getActiveProject")
+  
+  # path is NULL iff there is no open project
+  if (is.null(path)) return(path)
+  
+  # ... otherwise path is UTF-8 encoded
+  Encoding(path) <- "UTF-8"
+  path
 }
 
 #' Save Active RStudio Plot as an Image
@@ -148,11 +156,11 @@ restartSession <- function(command = "") {
 #' @param caption The window title.
 #' @param label The label to use for the 'Accept' / 'OK' button.
 #' @param path The initial working directory, from which the file dialog
-#'   should begin browsing. When \code{NULL}, defaults to the current RStudio
+#'   should begin browsing. Defaults to the current RStudio
 #'   project directory.
-#' @param filter A glob filter, to be used when attempting to open a file
-#'   with a particular extension. For example, to scope the dialog to
-#'   \R files, one could use \code{R Files (*.R)} here.
+#' @param filter A glob filter, to be used when attempting to open a file with a
+#'   particular extension. For example, to scope the dialog to \R files, one could use
+#'   \code{R Files (*.R)} here.
 #' @param existing Boolean; should the file dialog limit itself to existing
 #'   files on the filesystem, or allow the user to select the path to a new file?
 #'
@@ -166,8 +174,8 @@ NULL
 #' @export
 selectFile <- function(caption = "Select File",
                        label = "Select",
-                       path = NULL,
-                       filter = NULL,
+                       path = getActiveProject(),
+                       filter = "All Files (*)",
                        existing = TRUE)
 {
   callFun("selectFile", caption, label, path, filter, existing)
@@ -177,9 +185,9 @@ selectFile <- function(caption = "Select File",
 #' @export
 selectDirectory <- function(caption = "Select Directory",
                             label = "Select",
-                            path = NULL)
+                            path = getActiveProject())
 {
-  callFun("selectFile", caption, label, path)
+  callFun("selectDirectory", caption, label, path)
 }
 
 #' Open a Project in RStudio

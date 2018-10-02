@@ -2,17 +2,16 @@
 % Please edit documentation in R/stubs.R
 \name{file-dialogs}
 \alias{file-dialogs}
-\alias{file-dialogs}
 \alias{selectFile}
-\alias{file-dialogs}
 \alias{selectDirectory}
 \title{Select a File / Folder}
 \usage{
-selectFile(caption = "Select File", label = "Select", path = NULL,
-  filter = NULL, existing = TRUE)
+selectFile(caption = "Select File", label = "Select",
+  path = getActiveProject(), filter = "All Files (*)",
+  existing = TRUE)
 
 selectDirectory(caption = "Select Directory", label = "Select",
-  path = NULL)
+  path = getActiveProject())
 }
 \arguments{
 \item{caption}{The window title.}
@@ -20,12 +19,12 @@ selectDirectory(caption = "Select Directory", label = "Select",
 \item{label}{The label to use for the 'Accept' / 'OK' button.}
 
 \item{path}{The initial working directory, from which the file dialog
-should begin browsing. When \code{NULL}, defaults to the current RStudio
+should begin browsing. Defaults to the current RStudio
 project directory.}
 
-\item{filter}{A glob filter, to be used when attempting to open a file
-with a particular extension. For example, to scope the dialog to
-\R files, one could use \code{R Files (*.R)} here.}
+\item{filter}{A glob filter, to be used when attempting to open a file with a
+particular extension. For example, to scope the dialog to \R files, one could use
+\code{R Files (*.R)} here.}
 
 \item{existing}{Boolean; should the file dialog limit itself to existing
 files on the filesystem, or allow the user to select the path to a new file?}
@@ -41,5 +40,5 @@ RStudio will return an aliased path -- that is, prefixed with \code{~/}.
 }
 \note{
 The \code{selectFile} and \code{selectDirectory} functions were
-  added in version 1.1.287 of RStudio.
+added in version 1.1.287 of RStudio.
 }
