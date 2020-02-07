@@ -157,6 +157,7 @@ jobAddOutput <- function(job, output, error = FALSE) {
 #'
 jobRunScript <- function(path, name = NULL, encoding = "unknown", workingDir = NULL,
                          importEnv = FALSE, exportEnv = "") {
+    path <- normalizePath(path, winslash = "/", mustWork = TRUE)
     callFun("runScriptJob", path       = path,
                             name       = name,
                             encoding   = encoding,
