@@ -2,7 +2,7 @@
 % Please edit documentation in R/launcher-functions.R
 \name{launcherControlJob}
 \alias{launcherControlJob}
-\title{Interact with (Control) a Job}
+\title{Interact with (Control) a Workbench Job}
 \usage{
 launcherControlJob(
   jobId,
@@ -18,5 +18,21 @@ launcher plugins support different subsets of these operations -- consult
 your launcher plugin documentation to see which operations are supported.}
 }
 \description{
-Interact with a job.
+Interact with a Workbench job.
 }
+\seealso{
+Other job-launcher functionality: 
+\code{\link{launcherAvailable}()},
+\code{\link{launcherConfig}()},
+\code{\link{launcherContainer}()},
+\code{\link{launcherGetInfo}()},
+\code{\link{launcherGetJobs}()},
+\code{\link{launcherGetJob}()},
+\code{\link{launcherHostMount}()},
+\code{\link{launcherNfsMount}()},
+\code{\link{launcherPlacementConstraint}()},
+\code{\link{launcherResourceLimit}()},
+\code{\link{launcherSubmitJob}()},
+\code{\link{launcherSubmitR}()}
+}
+\concept{job-launcher functionality}

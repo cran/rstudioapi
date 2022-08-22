@@ -163,7 +163,9 @@ documentId <- function(allowConsole = TRUE) {
 #' @name rstudio-documents
 #' @export
 documentPath <- function(id = NULL) {
-  callFun("documentPath", id = id)
+  path <- callFun("documentPath", id = id)
+  Encoding(path) <- "UTF-8"
+  path
 }
 
 #' @name rstudio-documents
@@ -198,6 +200,9 @@ documentSaveAll <- function() {
 #' \code{contents} \tab The contents of the document.\cr
 #' \code{selection} \tab A \code{list} of selections. See \bold{Details} for more information.\cr
 #' }
+#' 
+#' @param id The ID of a particular document, as retrieved by `documentId()`
+#'   or similar. Supported in RStudio 2022.06.0 or newer.
 #'
 #' @rdname rstudio-editors
 #' @name rstudio-editors
@@ -208,8 +213,8 @@ getActiveDocumentContext <- function() {
 
 #' @name rstudio-editors
 #' @export
-getSourceEditorContext <- function() {
-  getDocumentContext("getSourceEditorContext")
+getSourceEditorContext <- function(id = NULL) {
+  getDocumentContext("getSourceEditorContext", id)
 }
 
 #' @name rstudio-editors
@@ -230,6 +235,26 @@ documentNew <- function(
 {
   type <- match.arg(type)
   callFun("documentNew", type, text, position[1], position[2], execute)
+}
+
+#' @param path The path to the document.
+#' @param line The line in the document to navigate to.
+#' @param col The column in the document to navigate to.
+#' @param moveCursor Boolean; move the cursor to the requested location after
+#'   opening the document?
+#'
+#' @note The \code{documentOpen} function was introduced in RStudio 1.4.1106.
+#'
+#' @name rstudio-documents
+#' @export
+documentOpen <- function(
+    path,
+    line = -1L,
+    col = -1L,
+    moveCursor = TRUE)
+{
+  path <- normalizePath(path, winslash = "/", mustWork = TRUE)
+  callFun("documentOpen", path, line, col, moveCursor)
 }
 
 #' @param save Whether to commit unsaved changes to the document before closing it.

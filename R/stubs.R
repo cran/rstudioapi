@@ -172,11 +172,10 @@ viewer <- function(url, height = NULL) {
 #' \code{column} \tab The column number for the associated marker. \cr
 #' \code{message} \tab A message associated with the marker at this location. \cr
 #' }
-#' 
-#' Note that if the \code{message} field is of class "html" (i.e.
-#' \code{inherits(message, "html") == TRUE}) then its contents will be treated
-#' as HTML.
-#' 
+#'
+#' Note the marker \code{message} can contain ANSI SGR codes for formatting.
+#' The \code{cli} package can format text for style and color.
+#'  
 #' @param name The name of marker set. If there is a market set with this name
 #'   already being shown, those markers will be replaced.
 #'
@@ -337,12 +336,15 @@ savePlotAsImage <- function(file,
 #' 
 #' @param code The \R code to be executed, as a character vector.
 #' 
-#' @param execute Boolean; execute the code immediately or just enter the text
-#'   into the console?
+#' @param execute Boolean; should the code be executed after being submitted
+#'   to the console? If `FALSE`, `code` is submitted to the console but is
+#'   not executed.
 #'   
 #' @param echo Boolean; echo the code in the console as it is executed?
 #' 
 #' @param focus Boolean; focus the console after sending code?
+#' 
+#' @param animate Boolean; should the submitted code be animated, as if someone was typing it?
 #' 
 #' @note The \code{sendToConsole} function was added in version 0.99.787 of
 #'   RStudio.
@@ -350,17 +352,18 @@ savePlotAsImage <- function(file,
 #' @examples
 #' 
 #' \dontrun{
-#' rstudioapi::sendToConsole(".Platform", execute = TRUE)
+#' rstudioapi::sendToConsole(".Platform", execute = FALSE, animate = TRUE)
 #' }
 #' 
 #' 
 #' @export
-sendToConsole <- function(code, execute = TRUE, echo = TRUE, focus = TRUE) {
+sendToConsole <- function(code, execute = TRUE, echo = TRUE, focus = TRUE, animate = FALSE) {
   callFun("sendToConsole",
           code = code,
           echo = echo,
           execute = execute,
-          focus = focus)
+          focus = focus, 
+          animate = animate)
 }
 
 #' Persistent keys and values

@@ -2,7 +2,7 @@
 % Please edit documentation in R/launcher-functions.R
 \name{launcherNfsMount}
 \alias{launcherNfsMount}
-\title{Define a Launcher NFS Mount}
+\title{Define a Workbench Launcher NFS Mount}
 \usage{
 launcherNfsMount(host, path, mountPath, readOnly = TRUE)
 }
@@ -22,9 +22,18 @@ be used to mount a path from a networked filesystem into a newly generated
 container.
 }
 \seealso{
-Other job submission: \code{\link{launcherConfig}()},
-\code{\link{launcherContainer}()}, \code{\link{launcherHostMount}()},
+Other job-launcher functionality: 
+\code{\link{launcherAvailable}()},
+\code{\link{launcherConfig}()},
+\code{\link{launcherContainer}()},
+\code{\link{launcherControlJob}()},
+\code{\link{launcherGetInfo}()},
+\code{\link{launcherGetJobs}()},
+\code{\link{launcherGetJob}()},
+\code{\link{launcherHostMount}()},
 \code{\link{launcherPlacementConstraint}()},
-\code{\link{launcherResourceLimit}()}, \code{\link{launcherSubmitJob}()},
+\code{\link{launcherResourceLimit}()},
+\code{\link{launcherSubmitJob}()},
 \code{\link{launcherSubmitR}()}
 }
+\concept{job-launcher functionality}

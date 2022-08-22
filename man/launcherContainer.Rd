@@ -2,7 +2,7 @@
 % Please edit documentation in R/launcher-functions.R
 \name{launcherContainer}
 \alias{launcherContainer}
-\title{Define a Launcher Container}
+\title{Define a Workbench Launcher Container}
 \usage{
 launcherContainer(image, runAsUserId = NULL, runAsGroupId = NULL)
 }
@@ -20,9 +20,18 @@ Define a launcher container, suitable for use with the \code{container}
 argument to \code{\link[=launcherSubmitJob]{launcherSubmitJob()}}.
 }
 \seealso{
-Other job submission: \code{\link{launcherConfig}()},
-\code{\link{launcherHostMount}()}, \code{\link{launcherNfsMount}()},
+Other job-launcher functionality: 
+\code{\link{launcherAvailable}()},
+\code{\link{launcherConfig}()},
+\code{\link{launcherControlJob}()},
+\code{\link{launcherGetInfo}()},
+\code{\link{launcherGetJobs}()},
+\code{\link{launcherGetJob}()},
+\code{\link{launcherHostMount}()},
+\code{\link{launcherNfsMount}()},
 \code{\link{launcherPlacementConstraint}()},
-\code{\link{launcherResourceLimit}()}, \code{\link{launcherSubmitJob}()},
+\code{\link{launcherResourceLimit}()},
+\code{\link{launcherSubmitJob}()},
 \code{\link{launcherSubmitR}()}
 }
+\concept{job-launcher functionality}

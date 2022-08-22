@@ -2,13 +2,29 @@
 % Please edit documentation in R/launcher-functions.R
 \name{launcherGetJob}
 \alias{launcherGetJob}
-\title{Retrieve Job Information}
+\title{Retrieve Workbench Job Information}
 \usage{
 launcherGetJob(jobId)
 }
 \arguments{
-\item{jobId}{The id of a launcher job.}
+\item{jobId}{The id of a Workbench job.}
 }
 \description{
-Retrieve information on a job with id \code{jobId}.
+Retrieve information on a Workbench job with id \code{jobId}.
 }
+\seealso{
+Other job-launcher functionality: 
+\code{\link{launcherAvailable}()},
+\code{\link{launcherConfig}()},
+\code{\link{launcherContainer}()},
+\code{\link{launcherControlJob}()},
+\code{\link{launcherGetInfo}()},
+\code{\link{launcherGetJobs}()},
+\code{\link{launcherHostMount}()},
+\code{\link{launcherNfsMount}()},
+\code{\link{launcherPlacementConstraint}()},
+\code{\link{launcherResourceLimit}()},
+\code{\link{launcherSubmitJob}()},
+\code{\link{launcherSubmitR}()}
+}
+\concept{job-launcher functionality}

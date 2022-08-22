@@ -12,6 +12,7 @@
 \alias{documentSave}
 \alias{documentSaveAll}
 \alias{documentNew}
+\alias{documentOpen}
 \alias{documentClose}
 \title{Interact with Documents open in RStudio}
 \usage{
@@ -39,6 +40,8 @@ documentNew(
   position = document_position(0, 0),
   execute = FALSE
 )
+
+documentOpen(path, line = -1L, col = -1L, moveCursor = TRUE)
 
 documentClose(id = NULL, save = TRUE)
 }
@@ -68,6 +71,15 @@ target the currently-active or last-active editor in the Source pane.}
 
 \item{execute}{Should the code be executed after the document
 is created?}
+
+\item{path}{The path to the document.}
+
+\item{line}{The line in the document to navigate to.}
+
+\item{col}{The column in the document to navigate to.}
+
+\item{moveCursor}{Boolean; move the cursor to the requested location after
+opening the document?}
 
 \item{save}{Whether to commit unsaved changes to the document before closing it.}
 }
@@ -135,6 +147,8 @@ The \code{documentId} and \code{documentPath} functions were added with
 version 1.4.843 of RStudio.
 
 The \code{documentNew} function was introduced in RStudio 1.2.640.
+
+The \code{documentOpen} function was introduced in RStudio 1.4.1106.
 
 The \code{documentClose} function was introduced in RStudio 1.2.1255
 }

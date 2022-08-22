@@ -23,7 +23,7 @@
 #' @export
 isAvailable <- function(version_needed = NULL, child_ok = FALSE) {
 
-  if (child_ok && isChildProcess())
+  if (child_ok && isJob())
     return(callRemote(sys.call(), parent.frame()))
 
   identical(.Platform$GUI, "RStudio") && version_ok(version_needed)
@@ -91,26 +91,26 @@ getVersion <- function() {
 #' @export callFun
 callFun <- function(fname, ...) {
   
-  if (isChildProcess())
+  if (isJob())
     return(callRemote(sys.call(), parent.frame()))
   
   verifyAvailable()
-  if (usingTools())
-    found <- exists(toolsName(fname), envir = toolsEnv(), mode = "function")
-  else
-    found <- exists(fname, envir = asNamespace("rstudio"), mode = "function")
-  if (!found)
+  
+  # get reference to RStudio function
+  f <- tryCatch(findFun(fname, mode = "function"), error = identity)
+  if (inherits(f, "error"))
     stop("Function ", fname, " not found in RStudio", call. = FALSE)
   
-  f <- findFun(fname, mode = "function")
-  
+  # drop arguments that aren't accepted by RStudio
+  # (ensure backwards-compatibility with older versions of RStudio)
   args <- list(...)
   if (!"..." %in% names(formals(f)))
-  {
-     while (length(args) > length(formals(f)))
-       args <- args[-length(args)]
-  }
+    if (length(args) > length(formals(f)))
+      length(args) <- length(formals(f))
+  
+  # invoke the function
   do.call(f, args)
+  
 }
 
 
@@ -135,11 +135,15 @@ callFun <- function(fname, ...) {
 #' 
 #' @export hasFun
 hasFun <- function(name, version_needed = NULL, ...) {
-  if (!isAvailable(version_needed)) return(FALSE)
+  
+  if (!isAvailable(version_needed))
+    return(FALSE)
+  
   if (usingTools())
-    exists(toolsName(name), toolsEnv(), ...)
-  else
-    exists(name, envir = asNamespace("rstudio"), ...)
+    return(exists(toolsName(name), toolsEnv(), ...))
+  
+  exists(name, envir = asNamespace("rstudio"), ...)
+  
 }
 
 #' @export
