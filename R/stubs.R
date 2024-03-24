@@ -426,13 +426,17 @@ hasColorConsole <- function() {
 #' 
 #' 
 #' @param command A command (as a string) to be run after restarting.
+#' @param clean Boolean; when `FALSE`, the current \R session (including
+#'   loaded packages and data objects) will be saved and restored in the
+#'   new session.
 #' 
 #' @note The \code{restartSession} function was added in version 1.1.281 of
-#'   RStudio.
+#'   RStudio. Support for the `clean` argument was added for version 2024.04
+#'   release of RStudio; it is silently ignored in older versions of RStudio.
 #'   
 #' @export
-restartSession <- function(command = "") {
-  callFun("restartSession", command)
+restartSession <- function(command = "", clean = FALSE) {
+  callFun("restartSession", command, clean)
 }
 
 
@@ -517,4 +521,19 @@ openProject <- function(path = NULL, newSession = FALSE) {
 #' @export
 initializeProject <- function(path = getwd()) {
   callFun("initializeProject", path)
+}
+
+
+#' Set ghost text
+#' 
+#' Set ghost text in the current document. The ghost text will be inserted at
+#' the current cursor position. Ghost text can be inserted into the document
+#' by pressing Tab, and will be automatically dismissed if the user navigates
+#' the cursor away.
+#' 
+#' @param text The ghost text to set.
+#' 
+#' @export
+setGhostText <- function(text) {
+  callFun("setGhostText", text)
 }

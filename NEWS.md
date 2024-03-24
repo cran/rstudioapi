@@ -1,3 +1,11 @@
+
+# rstudioapi 0.16.0
+
+* `restartSession()` gains the `clean` argument, for RStudio 2024.04
+  and newer.
+
+* Added `setGhostText()` for setting ghost text in the current editor.
+
 # rstudioapi 0.15.0
 
 * Added `getDelegatedAzureToken` for Posit Workbench users needing to expose 
