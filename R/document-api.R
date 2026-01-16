@@ -19,11 +19,12 @@
 #' @param ranges A list of one or more ranges, typically created
 #'   through \code{\link{document_range}()}.
 #'
-#' @param type The type of document to be created.
+#' @param type The type of document to be created. One of \code{"r"} (default),
+#'   \code{"rmarkdown"}, or \code{"sql"}.
 #'
 #' @param execute Should the code be executed after the document
 #'   is created?
-#'   
+#'
 #' @param allowConsole Allow the pseudo-id `#console` to be returned, if the \R
 #'   console is currently focused? Set this to `FALSE` if you'd always like to
 #'   target the currently-active or last-active editor in the Source pane.
@@ -76,7 +77,7 @@
 #'
 #' The \code{documentSave} and \code{documentSaveAll} functions were added
 #' with version 1.1.287 of RStudio.
-#' 
+#'
 #' The \code{documentId} and \code{documentPath} functions were added with
 #' version 1.4.843 of RStudio.
 #'
@@ -200,7 +201,7 @@ documentSaveAll <- function() {
 #' \code{contents} \tab The contents of the document.\cr
 #' \code{selection} \tab A \code{list} of selections. See \bold{Details} for more information.\cr
 #' }
-#' 
+#'
 #' @param id The ID of a particular document, as retrieved by `documentId()`
 #'   or similar. Supported in RStudio 2022.06.0 or newer.
 #'
@@ -229,11 +230,11 @@ getConsoleEditorContext <- function() {
 #' @export
 documentNew <- function(
   text,
-  type = c("r", "rmarkdown", "sql"),
+  type = "r",
   position = document_position(0, 0),
   execute = FALSE)
 {
-  type <- match.arg(type)
+  type <- match.arg(type, choices = c("r", "rmarkdown", "sql"))
   callFun("documentNew", type, text, position[1], position[2], execute)
 }
 
